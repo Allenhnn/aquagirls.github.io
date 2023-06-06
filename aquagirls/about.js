@@ -17,13 +17,16 @@ $(document).ready(function () {
 
     // search bar
     $('#clearbutton').click(function(){
-        $('#searchInput').val("");
+      $('#searchInput').val("");
+      // $('#searchInput').trigger("input");
+      document.getElementById("searchInput").dispatchEvent(new Event("input"));
+      console.log("t1");
     })
-
     const searchInput = document.getElementById('searchInput');
     const cards = document.getElementsByClassName('card');
-    
+
     searchInput.addEventListener('input', function() {
+      console.log(123)
       const searchTerm = searchInput.value.toString();
     
       for (let i = 0; i < cards.length; i++) {
@@ -41,11 +44,9 @@ $(document).ready(function () {
             break;
           }
         }
-    
+  
         if (hasMatch) {
           card.style.display = 'block'; // 顯示符合條件的卡片
-          console.log(typeof card)
-
         } else {
           card.style.display = 'none'; // 隱藏不匹配的卡片
         }
@@ -54,11 +55,8 @@ $(document).ready(function () {
 
     $("#hot_search").click(function(){
       var button_text = $(this).text();
-      $("#searchInput").val(button_text);
+      $("#searchInput").attr(button_text);
     })
-    
-    
-    
 })
 
 window.addEventListener('mousemove', (event) => {
